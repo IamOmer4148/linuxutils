@@ -39,7 +39,7 @@ curl -fsSL https://raw.githubusercontent.com/IamOmer4148/linuxutils/main/scripts
 ### 2) Manual install
 
 ```bash
-git clone https://github.com/your-org/linuxutils.git
+git clone https://github.com/IamOmer4148/linuxutils.git
 cd linuxutils
 make install
 # or
