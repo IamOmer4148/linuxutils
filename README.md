@@ -27,13 +27,13 @@
 ### 1) Curl installer (safe/readable)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/your-org/linuxutils/main/scripts/install-via-curl.sh | bash
+curl -fsSL https://raw.githubusercontent.com/IamOmer4148/linuxutils/main/scripts/install-via-curl.sh | bash
 ```
 
 Read the installer first:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/your-org/linuxutils/main/scripts/install-via-curl.sh
+curl -fsSL https://raw.githubusercontent.com/IamOmer4148/linuxutils/main/scripts/install-via-curl.sh
 ```
 
 ### 2) Manual install
