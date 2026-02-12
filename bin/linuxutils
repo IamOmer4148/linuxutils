@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+LU_VERSION="0.1.0"
+LU_BIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LU_ROOT="$(cd "$LU_BIN_DIR/.." && pwd)"
+if [[ ! -d "$LU_ROOT/lib" ]]; then
+  LU_ROOT="${LU_LIB_ROOT:-/usr/local/lib/linuxutils}"
+fi
+LU_YES=0
+
+# shellcheck source=../lib/common.sh
+source "$LU_ROOT/lib/common.sh"
+# shellcheck source=../lib/os.sh
+source "$LU_ROOT/lib/os.sh"
+# shellcheck source=../lib/registry.sh
+source "$LU_ROOT/lib/registry.sh"
+# shellcheck source=../lib/help.sh
+source "$LU_ROOT/lib/help.sh"
+# shellcheck source=../lib/health.sh
+source "$LU_ROOT/lib/health.sh"
+
+lu_detect_os
+lu_load_commands "$LU_ROOT/commands"
+
+if [[ $# -eq 0 ]]; then
+  lu_show_help
+  exit 0
+fi
+
+if [[ "${*: -1}" == "--yes" ]]; then
+  LU_YES=1
+  set -- "${@:1:$(($#-1))}"
+fi
+
+case "$1" in
+  help)
+    if [[ $# -eq 1 ]]; then
+      lu_show_help
+      exit 0
+    fi
+    lu_dispatch help "$2" "${@:3}"
+    ;;
+  doctor)
+    lu_doctor
+    ;;
+  update)
+    lu_self_update
+    ;;
+  version|--version|-v)
+    echo "linuxutils ${LU_VERSION}"
+    ;;
+  *)
+    [[ $# -ge 2 ]] || lu_die "Expected: linuxutils <group> <action> [args]. Use 'linuxutils help'." 2
+    lu_dispatch "$1" "$2" "${@:3}"
+    ;;
+esac
