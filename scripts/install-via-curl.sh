@@ -1,24 +1,45 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_URL="${REPO_URL:-https://github.com/your-org/linuxutils.git}"
+REPO_URL="${REPO_URL:-https://github.com/IamOmer4148/linuxutils.git}"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/.local/share/linuxutils}"
 BIN_DIR="${BIN_DIR:-$HOME/.local/bin}"
 
-if ! command -v git >/dev/null 2>&1; then
-  echo "git is required to install linuxutils" >&2
+log() {
+  printf '%s\n' "$*"
+}
+
+fail() {
+  printf 'Error: %s\n' "$*" >&2
   exit 1
+}
+
+if ! command -v git >/dev/null 2>&1; then
+  fail "git is required to install linuxutils"
 fi
+
+case "$REPO_URL" in
+  https://github.com/*|http://github.com/*)
+    ;;
+  *)
+    fail "REPO_URL must be an http(s) GitHub URL to avoid interactive SSH auth prompts"
+    ;;
+esac
 
 mkdir -p "$INSTALL_DIR" "$BIN_DIR"
+
+# Disable interactive git prompts so installer never asks for GitHub credentials.
+GIT_NO_PROMPT=(env GIT_TERMINAL_PROMPT=0)
 if [[ -d "$INSTALL_DIR/.git" ]]; then
-  git -C "$INSTALL_DIR" pull --ff-only
+  "${GIT_NO_PROMPT[@]}" git -C "$INSTALL_DIR" remote set-url origin "$REPO_URL"
+  "${GIT_NO_PROMPT[@]}" git -C "$INSTALL_DIR" fetch --depth=1 origin
+  git -C "$INSTALL_DIR" reset --hard origin/HEAD
 else
-  git clone "$REPO_URL" "$INSTALL_DIR"
+  "${GIT_NO_PROMPT[@]}" git clone --depth=1 "$REPO_URL" "$INSTALL_DIR"
 fi
 
-ln -sf "$INSTALL_DIR/bin/linuxutils" "$BIN_DIR/linuxutils"
-ln -sf "$INSTALL_DIR/bin/lu" "$BIN_DIR/lu"
+install -m 0755 "$INSTALL_DIR/bin/linuxutils" "$BIN_DIR/linuxutils"
+install -m 0755 "$INSTALL_DIR/bin/lu" "$BIN_DIR/lu"
 
-echo "Installed linuxutils in $BIN_DIR"
-echo "Add to PATH if needed: export PATH=\"$BIN_DIR:\$PATH\""
+log "Installed linuxutils in $BIN_DIR"
+log "Add to PATH if needed: export PATH=\"$BIN_DIR:\$PATH\""

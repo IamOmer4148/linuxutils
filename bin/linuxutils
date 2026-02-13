@@ -4,9 +4,13 @@ set -euo pipefail
 
 LU_VERSION="0.1.0"
 LU_BIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LU_ROOT="$(cd "$LU_BIN_DIR/.." && pwd)"
-if [[ ! -d "$LU_ROOT/lib" ]]; then
-  LU_ROOT="${LU_LIB_ROOT:-/usr/local/lib/linuxutils}"
+LU_PREFIX="$(cd "$LU_BIN_DIR/.." && pwd)"
+LU_ROOT="$LU_PREFIX"
+
+# Development layout: <repo>/bin, <repo>/lib, <repo>/commands
+if [[ ! -f "$LU_ROOT/lib/common.sh" || ! -d "$LU_ROOT/commands" ]]; then
+  # Installed layout: <prefix>/bin and <prefix>/lib/linuxutils/{lib,commands}
+  LU_ROOT="${LU_LIB_ROOT:-$LU_PREFIX/lib/linuxutils}"
 fi
 LU_YES=0
 
