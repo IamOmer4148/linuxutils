@@ -41,9 +41,12 @@ curl -fsSL https://raw.githubusercontent.com/IamOmer4148/linuxutils/main/scripts
 ```bash
 git clone https://github.com/IamOmer4148/linuxutils.git
 cd linuxutils
-make install
-# or
-./install.sh
+# system-wide (requires sudo)
+sudo make install
+
+# user-local (no sudo)
+make PREFIX="$HOME/.local" install
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
 ### 3) Homebrew on Linux (optional)
