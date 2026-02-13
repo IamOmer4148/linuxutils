@@ -4,6 +4,7 @@ set -euo pipefail
 REPO_URL="${REPO_URL:-https://github.com/IamOmer4148/linuxutils.git}"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/.local/share/linuxutils}"
 BIN_DIR="${BIN_DIR:-$HOME/.local/bin}"
+CLEAN_INSTALL="${CLEAN_INSTALL:-1}"
 
 log() {
   printf '%s\n' "$*"
@@ -26,14 +27,23 @@ case "$REPO_URL" in
     ;;
 esac
 
-mkdir -p "$INSTALL_DIR" "$BIN_DIR"
+mkdir -p "$BIN_DIR"
 
 # Disable interactive git prompts so installer never asks for GitHub credentials.
 GIT_NO_PROMPT=(env GIT_TERMINAL_PROMPT=0)
+
+if [[ "$CLEAN_INSTALL" == "1" && -d "$INSTALL_DIR" && ! -d "$INSTALL_DIR/.git" ]]; then
+  log "Removing non-git install directory for clean reinstall: $INSTALL_DIR"
+  rm -rf "$INSTALL_DIR"
+fi
+
 if [[ -d "$INSTALL_DIR/.git" ]]; then
   "${GIT_NO_PROMPT[@]}" git -C "$INSTALL_DIR" remote set-url origin "$REPO_URL"
   "${GIT_NO_PROMPT[@]}" git -C "$INSTALL_DIR" fetch --depth=1 origin
   git -C "$INSTALL_DIR" reset --hard origin/HEAD
+  if [[ "$CLEAN_INSTALL" == "1" ]]; then
+    git -C "$INSTALL_DIR" clean -fdx
+  fi
 else
   "${GIT_NO_PROMPT[@]}" git clone --depth=1 "$REPO_URL" "$INSTALL_DIR"
 fi

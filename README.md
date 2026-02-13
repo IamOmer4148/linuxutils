@@ -83,7 +83,7 @@ linuxutils doctor
 
 ## Full command list
 
-This project ships with **250+ commands**.
+This project ships with **500+ commands**.
 
 - View all commands in terminal:
 
