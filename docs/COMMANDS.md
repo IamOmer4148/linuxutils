@@ -500,7 +500,6 @@ Generated from the command registry.
 | `web.apache-static-asset-prepare` | Apache workflow: static asset prepare | `linuxutils web apache-static-asset-prepare` |
 | `web.apache-tls-expiry-report` | Apache workflow: tls expiry report | `linuxutils web apache-tls-expiry-report` |
 | `web.apache-upstream-reachability` | Apache workflow: upstream reachability | `linuxutils web apache-upstream-reachability` |
-| `web.busybox-serve` | Serve current directory via busybox on port (default 8080) | `linuxutils web busybox-serve 8080` |
 | `web.caddy-access-log-triage` | Caddy workflow: access log triage | `linuxutils web caddy-access-log-triage` |
 | `web.caddy-backup-snapshot` | Caddy workflow: backup snapshot | `linuxutils web caddy-backup-snapshot` |
 | `web.caddy-cache-warmup` | Caddy workflow: cache warmup | `linuxutils web caddy-cache-warmup` |
@@ -542,7 +541,6 @@ Generated from the command registry.
 | `web.go-static-asset-prepare` | Go workflow: static asset prepare | `linuxutils web go-static-asset-prepare` |
 | `web.go-tls-expiry-report` | Go workflow: tls expiry report | `linuxutils web go-tls-expiry-report` |
 | `web.go-upstream-reachability` | Go workflow: upstream reachability | `linuxutils web go-upstream-reachability` |
-| `web.http-code` | Show HTTP status code for a URL (default: https://example.com) | `linuxutils web http-code https://example.com` |
 | `web.nginx-access-log-triage` | Nginx workflow: access log triage | `linuxutils web nginx-access-log-triage` |
 | `web.nginx-backup-snapshot` | Nginx workflow: backup snapshot | `linuxutils web nginx-backup-snapshot` |
 | `web.nginx-cache-warmup` | Nginx workflow: cache warmup | `linuxutils web nginx-cache-warmup` |
@@ -609,7 +607,6 @@ Generated from the command registry.
 | `web.python-config-lint-pass` | Python workflow: config lint pass | `linuxutils web python-config-lint-pass` |
 | `web.python-dependency-refresh` | Python workflow: dependency refresh | `linuxutils web python-dependency-refresh` |
 | `web.python-error-log-triage` | Python workflow: error log triage | `linuxutils web python-error-log-triage` |
-| `web.python-flask-run` | Run Flask app from app.py on 0.0.0.0:5000 | `linuxutils web python-flask-run` |
 | `web.python-health-probe-suite` | Python workflow: health probe suite | `linuxutils web python-health-probe-suite` |
 | `web.python-latency-sample` | Python workflow: latency sample | `linuxutils web python-latency-sample` |
 | `web.python-port-binding-report` | Python workflow: port binding report | `linuxutils web python-port-binding-report` |
