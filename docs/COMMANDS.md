@@ -4,6 +4,40 @@ Generated from the command registry.
 
 | Shortcut | Description | Example |
 |---|---|---|
+| `ai.comfyui-run` | Run ComfyUI container | `linuxutils ai comfyui-run` |
+| `ai.gradio-run` | Run Gradio app from app.py | `linuxutils ai gradio-run` |
+| `ai.hf-cache-clear` | Remove HF cache | `linuxutils ai hf-cache-clear` |
+| `ai.hf-cache-info` | Show HF cache size | `linuxutils ai hf-cache-info` |
+| `ai.hf-download` | Download model/artifact from Hugging Face | `linuxutils ai hf-download meta-llama/Llama-3.2-1B-Instruct` |
+| `ai.hf-login` | Login to Hugging Face CLI | `linuxutils ai hf-login` |
+| `ai.hf-whoami` | Show Hugging Face logged in user | `linuxutils ai hf-whoami` |
+| `ai.jupyter-start` | Start Jupyter Lab | `linuxutils ai jupyter-start` |
+| `ai.jupyter-stop` | Stop Jupyter server | `linuxutils ai jupyter-stop` |
+| `ai.langchain-quickstart` | Install LangChain stack | `linuxutils ai langchain-quickstart` |
+| `ai.llama-cpp-bench` | Run llama.cpp benchmark | `linuxutils ai llama-cpp-bench` |
+| `ai.llama-cpp-quantize` | Quantize GGUF model | `linuxutils ai llama-cpp-quantize` |
+| `ai.llama-cpp-run` | Run llama.cpp model with prompt | `linuxutils ai llama-cpp-run ./model.gguf hello` |
+| `ai.model-card-open` | Print model card URL from HF_MODEL env | `linuxutils ai model-card-open` |
+| `ai.ollama-list` | List local Ollama models | `linuxutils ai ollama-list` |
+| `ai.ollama-logs` | Tail Ollama service logs | `linuxutils ai ollama-logs` |
+| `ai.ollama-ps` | List running Ollama models | `linuxutils ai ollama-ps` |
+| `ai.ollama-pull` | Download an Ollama model | `linuxutils ai ollama-pull llama3.1` |
+| `ai.ollama-rm` | Remove local Ollama model | `linuxutils ai ollama-rm llama3.1` |
+| `ai.ollama-run` | Run prompt against Ollama model | `linuxutils ai ollama-run llama3.1 hello` |
+| `ai.ollama-serve` | Run Ollama server foreground | `linuxutils ai ollama-serve` |
+| `ai.ollama-start` | Start Ollama service | `linuxutils ai ollama-start` |
+| `ai.ollama-stop` | Stop Ollama service | `linuxutils ai ollama-stop` |
+| `ai.openai-env-check` | Check OPENAI_API_KEY availability | `linuxutils ai openai-env-check` |
+| `ai.openwebui-run` | Run Open WebUI container | `linuxutils ai openwebui-run` |
+| `ai.python-gpu-info` | Show GPU info with nvidia-smi | `linuxutils ai python-gpu-info` |
+| `ai.python-pip-upgrade` | Upgrade core AI Python packages | `linuxutils ai python-pip-upgrade` |
+| `ai.python-torch-cuda` | Check torch CUDA availability | `linuxutils ai python-torch-cuda` |
+| `ai.rag-chroma-install` | Install ChromaDB package | `linuxutils ai rag-chroma-install` |
+| `ai.rag-faiss-install` | Install FAISS CPU package | `linuxutils ai rag-faiss-install` |
+| `ai.sd-webui-run` | Run stable-diffusion-webui container | `linuxutils ai sd-webui-run` |
+| `ai.streamlit-run` | Run Streamlit app from app.py | `linuxutils ai streamlit-run` |
+| `ai.textgen-webui-run` | Run text-generation-webui container | `linuxutils ai textgen-webui-run` |
+| `ai.vllm-serve` | Start vLLM OpenAI-compatible server | `linuxutils ai vllm-serve meta-llama/Llama-3.2-1B-Instruct` |
 | `backup.etc` | Backup /etc to tar.gz | `linuxutils backup etc ./etc.tar.gz` |
 | `backup.home` | Backup home directory to tar.gz | `linuxutils backup home ~/backups/home.tar.gz` |
 | `backup.list-recent` | List latest backup files | `linuxutils backup list-recent ~/backups` |
@@ -14,6 +48,64 @@ Generated from the command registry.
 | `backup.size-report` | Show total size of path | `linuxutils backup size-report /var/backups` |
 | `backup.snapshot` | Create timestamped rsync snapshot | `linuxutils backup snapshot ./src /mnt/snaps` |
 | `backup.verify-checksum` | Verify file against sha256 hash | `linuxutils backup verify-checksum archive.tar.gz abc123` |
+| `cloud.ansible-lint` | Lint ansible playbooks | `linuxutils cloud ansible-lint` |
+| `cloud.ansible-ping` | Ping hosts via ansible | `linuxutils cloud ansible-ping ./inventory.ini all` |
+| `cloud.ansible-vault-view` | View ansible vault file | `linuxutils cloud ansible-vault-view` |
+| `cloud.aws-eks-list` | List EKS clusters | `linuxutils cloud aws-eks-list` |
+| `cloud.aws-list-instances` | List EC2 instances | `linuxutils cloud aws-list-instances` |
+| `cloud.aws-list-regions` | List AWS regions | `linuxutils cloud aws-list-regions` |
+| `cloud.aws-list-s3` | List S3 buckets | `linuxutils cloud aws-list-s3` |
+| `cloud.aws-login-hint` | Show AWS CLI login hint | `linuxutils cloud aws-login-hint` |
+| `cloud.aws-whoami` | Show AWS caller identity | `linuxutils cloud aws-whoami` |
+| `cloud.azure-aks-list` | List AKS clusters | `linuxutils cloud azure-aks-list` |
+| `cloud.azure-login-hint` | Show Azure CLI login hint | `linuxutils cloud azure-login-hint` |
+| `cloud.azure-storage-list` | List storage accounts | `linuxutils cloud azure-storage-list` |
+| `cloud.azure-subscriptions` | List Azure subscriptions | `linuxutils cloud azure-subscriptions` |
+| `cloud.azure-vm-list` | List Azure VMs | `linuxutils cloud azure-vm-list` |
+| `cloud.compose-down` | Stop services with compose | `linuxutils cloud compose-down` |
+| `cloud.compose-logs` | Tail compose logs | `linuxutils cloud compose-logs` |
+| `cloud.compose-up` | Start services with compose | `linuxutils cloud compose-up` |
+| `cloud.docker-build` | Build Docker image | `linuxutils cloud docker-build` |
+| `cloud.docker-login` | Docker login to registry | `linuxutils cloud docker-login` |
+| `cloud.docker-push` | Push Docker image | `linuxutils cloud docker-push` |
+| `cloud.gcp-compute-list` | List Compute Engine VMs | `linuxutils cloud gcp-compute-list` |
+| `cloud.gcp-gke-list` | List GKE clusters | `linuxutils cloud gcp-gke-list` |
+| `cloud.gcp-login-hint` | Show gcloud login hint | `linuxutils cloud gcp-login-hint` |
+| `cloud.gcp-project` | Show active gcloud project | `linuxutils cloud gcp-project` |
+| `cloud.gcp-projects` | List gcloud projects | `linuxutils cloud gcp-projects` |
+| `cloud.gcp-storage-list` | List GCS buckets | `linuxutils cloud gcp-storage-list` |
+| `cloud.helm-lint` | Lint helm chart | `linuxutils cloud helm-lint` |
+| `cloud.helm-list` | List Helm releases | `linuxutils cloud helm-list` |
+| `cloud.helm-template` | Render helm templates | `linuxutils cloud helm-template` |
+| `cloud.kind-create` | Create KIND cluster | `linuxutils cloud kind-create` |
+| `cloud.kind-delete` | Delete KIND cluster | `linuxutils cloud kind-delete` |
+| `cloud.kube-apply` | Apply Kubernetes manifests | `linuxutils cloud kube-apply` |
+| `cloud.kube-contexts` | List kube contexts | `linuxutils cloud kube-contexts` |
+| `cloud.kube-ctx-use` | Switch kubectl context | `linuxutils cloud kube-ctx-use prod-cluster` |
+| `cloud.kube-delete` | Delete Kubernetes manifests | `linuxutils cloud kube-delete` |
+| `cloud.kube-events` | Show latest Kubernetes events | `linuxutils cloud kube-events` |
+| `cloud.kube-get-nodes` | List Kubernetes nodes | `linuxutils cloud kube-get-nodes` |
+| `cloud.kube-get-ns` | List Kubernetes namespaces | `linuxutils cloud kube-get-ns` |
+| `cloud.kube-get-pods` | List pods in all namespaces | `linuxutils cloud kube-get-pods` |
+| `cloud.kube-ns-use` | Set default kubectl namespace | `linuxutils cloud kube-ns-use default` |
+| `cloud.kube-top-nodes` | Show node resource usage | `linuxutils cloud kube-top-nodes` |
+| `cloud.kube-top-pods` | Show pod resource usage | `linuxutils cloud kube-top-pods` |
+| `cloud.minikube-start` | Start minikube | `linuxutils cloud minikube-start` |
+| `cloud.minikube-status` | Show minikube status | `linuxutils cloud minikube-status` |
+| `cloud.minikube-stop` | Stop minikube | `linuxutils cloud minikube-stop` |
+| `cloud.nomad-status` | Show Nomad status | `linuxutils cloud nomad-status` |
+| `cloud.packer-build` | Build image with packer | `linuxutils cloud packer-build` |
+| `cloud.tf-apply` | Run Terraform apply | `linuxutils cloud tf-apply` |
+| `cloud.tf-destroy` | Run Terraform destroy | `linuxutils cloud tf-destroy` |
+| `cloud.tf-fmt` | Format Terraform files recursively | `linuxutils cloud tf-fmt` |
+| `cloud.tf-init` | Initialize Terraform project | `linuxutils cloud tf-init` |
+| `cloud.tf-output` | Show Terraform outputs | `linuxutils cloud tf-output` |
+| `cloud.tf-plan` | Run Terraform plan | `linuxutils cloud tf-plan` |
+| `cloud.tf-show` | Show Terraform state | `linuxutils cloud tf-show` |
+| `cloud.tf-state-list` | List Terraform resources | `linuxutils cloud tf-state-list` |
+| `cloud.tf-validate` | Validate Terraform configuration | `linuxutils cloud tf-validate` |
+| `cloud.tf-workspaces` | List Terraform workspaces | `linuxutils cloud tf-workspaces` |
+| `cloud.vault-status` | Show Vault status | `linuxutils cloud vault-status` |
 | `core.doctor` | Run dependency and environment checks | `linuxutils core doctor` |
 | `core.update` | Self-update from git clone | `linuxutils core update` |
 | `core.version` | Print version | `linuxutils core version` |
@@ -136,3 +228,47 @@ Generated from the command registry.
 | `sys.top` | Open top-like process monitor | `linuxutils sys top` |
 | `sys.uptime` | Show uptime and load average | `linuxutils sys uptime` |
 | `sys.usb` | List USB devices | `linuxutils sys usb` |
+| `web.apache-error-tail` | Tail apache error log | `linuxutils web apache-error-tail` |
+| `web.apache-reload` | Reload Apache/httpd service | `linuxutils web apache-reload` |
+| `web.apache-tail` | Tail apache access log | `linuxutils web apache-tail` |
+| `web.apache-test` | Validate Apache/httpd configuration | `linuxutils web apache-test` |
+| `web.bench-ab` | Benchmark endpoint with ApacheBench | `linuxutils web bench-ab http://127.0.0.1:8000/ 1000 50` |
+| `web.bench-hey` | Benchmark endpoint with hey | `linuxutils web bench-hey http://127.0.0.1:8000/ 1000 50` |
+| `web.busybox-serve` | Serve current directory via busybox httpd | `linuxutils web busybox-serve 8080` |
+| `web.cache-bust-touch` | Touch static assets to bust cache | `linuxutils web cache-bust-touch` |
+| `web.caddy-serve` | Run Caddy static file server | `linuxutils web caddy-serve . :8080` |
+| `web.certbot-renew` | Dry-run Let's Encrypt renewal | `linuxutils web certbot-renew` |
+| `web.check-healthz` | Fetch health endpoint | `linuxutils web check-healthz` |
+| `web.check-robots` | Fetch robots.txt | `linuxutils web check-robots` |
+| `web.check-sitemap` | Fetch sitemap.xml | `linuxutils web check-sitemap` |
+| `web.curl-follow` | Fetch URL and follow redirects | `linuxutils web curl-follow https://example.com` |
+| `web.curl-head` | Send HEAD request with curl | `linuxutils web curl-head https://example.com` |
+| `web.curl-json` | Fetch URL with JSON accept header | `linuxutils web curl-json https://httpbin.org/json` |
+| `web.dns-a` | Query A records quickly | `linuxutils web dns-a` |
+| `web.dns-aaaa` | Query AAAA records quickly | `linuxutils web dns-aaaa` |
+| `web.dns-mx` | Query MX records quickly | `linuxutils web dns-mx` |
+| `web.dns-ns` | Query NS records quickly | `linuxutils web dns-ns` |
+| `web.go-run` | Run Go web app | `linuxutils web go-run` |
+| `web.go-test` | Run Go tests | `linuxutils web go-test` |
+| `web.http-code` | Show HTTP status code only | `linuxutils web http-code` |
+| `web.http-latency` | Show HTTP total latency | `linuxutils web http-latency` |
+| `web.nginx-error-tail` | Tail nginx error log | `linuxutils web nginx-error-tail` |
+| `web.nginx-reload` | Reload nginx service | `linuxutils web nginx-reload` |
+| `web.nginx-tail` | Tail nginx access log | `linuxutils web nginx-tail` |
+| `web.nginx-test` | Validate nginx configuration | `linuxutils web nginx-test` |
+| `web.node-build` | Build npm web app | `linuxutils web node-build` |
+| `web.node-dev` | Run npm dev server | `linuxutils web node-dev` |
+| `web.node-serve` | Serve static files using npx serve | `linuxutils web node-serve 3000` |
+| `web.node-start` | Run npm start | `linuxutils web node-start` |
+| `web.open-ports-web` | Show open web-related ports | `linuxutils web open-ports-web` |
+| `web.php-serve` | Serve current directory via PHP built-in server | `linuxutils web php-serve 127.0.0.1 8000` |
+| `web.pm2-list` | List PM2 processes | `linuxutils web pm2-list` |
+| `web.pm2-logs` | Tail PM2 logs | `linuxutils web pm2-logs` |
+| `web.pm2-save` | Save PM2 process list | `linuxutils web pm2-save` |
+| `web.pm2-startup` | Generate PM2 startup script | `linuxutils web pm2-startup` |
+| `web.py-serve` | Serve current directory via Python HTTP server | `linuxutils web py-serve 8000` |
+| `web.python-django-run` | Run Django dev server | `linuxutils web python-django-run` |
+| `web.python-flask-run` | Run Flask app from app.py | `linuxutils web python-flask-run` |
+| `web.socket-listen` | List listening sockets for web ports | `linuxutils web socket-listen` |
+| `web.systemd-reload` | Reload systemd manager config | `linuxutils web systemd-reload` |
+| `web.watch-logs` | Tail system journal for web services | `linuxutils web watch-logs` |

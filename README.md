@@ -15,7 +15,7 @@
 
 - Bash strict mode and explicit exit codes.
 - Auto-detect OS/package manager from `/etc/os-release` + binary fallback.
-- Plugin-like command registry (`commands/*.sh`) with >100 shortcuts.
+- Plugin-like command registry (`commands/*.sh`) with 250+ shortcuts.
 - Built-in help system with examples and keyword search.
 - `linuxutils doctor` for dependency/environment checks.
 - `linuxutils update` self-update (when installed from git checkout).
@@ -76,9 +76,22 @@ linuxutils doctor
 - `sec` - security hygiene checks
 - `backup` - backup and rsync presets
 - `qol` - quality-of-life shortcuts
+- `web` - basic web server, deploy, and site health checks
+- `cloud` - basic cloud/Kubernetes/Terraform/containers shortcuts
+- `ai` - basic llama/Ollama/HuggingFace/vLLM helpers
 - `help` - searchable help, grouped lists, examples
 
-Full generated command list: [`docs/COMMANDS.md`](docs/COMMANDS.md)
+## Full command list
+
+This project ships with **250+ commands**.
+
+- View all commands in terminal:
+
+```bash
+linuxutils help commands
+```
+
+- Full generated command catalog (committed): [`docs/COMMANDS.md`](docs/COMMANDS.md)
 
 ## Project layout
 

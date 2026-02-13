@@ -22,7 +22,7 @@ Examples:
   linuxutils help search firewall
 
 Groups:
-  pkg, sys, net, dev, file, svc, sec, backup, qol, help, core
+  pkg, sys, net, dev, file, svc, sec, backup, qol, web, cloud, ai, help, core
 EOT
 }
 
@@ -38,5 +38,8 @@ Common examples:
   linuxutils sec ssh-root-login
   linuxutils backup rsync-dryrun ./src /mnt/backup/src
   linuxutils qol weather Tokyo
+  linuxutils web py-serve 8000
+  linuxutils cloud kube-get-pods
+  linuxutils ai ollama-run llama3.1 hello
 EOT
 }
