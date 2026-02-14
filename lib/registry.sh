@@ -23,8 +23,18 @@ register_command() {
 
 lu_load_commands() {
   local dir="$1"
+  local -a files=()
   local file
-  for file in "$dir"/*.sh; do
+
+  [[ -d "$dir" ]] || lu_die "Commands directory not found: $dir" 6
+
+  shopt -s nullglob
+  files=("$dir"/*.sh)
+  shopt -u nullglob
+
+  [[ ${#files[@]} -gt 0 ]] || lu_die "No command definition files found in: $dir" 6
+
+  for file in "${files[@]}"; do
     # shellcheck disable=SC1090
     source "$file"
   done
@@ -52,22 +62,38 @@ lu_dispatch() {
 
 lu_search_commands() {
   local query="$1"
+  local normalized_query="${query,,}"
   local key
+  local haystack
+  local matched=0
+
   for key in "${LU_KEYS[@]}"; do
-    if [[ "$key ${LU_DESC[$key]} ${LU_EXAMPLE[$key]}" == *"$query"* ]]; then
+    haystack="${key,,} ${LU_DESC[$key],,} ${LU_EXAMPLE[$key],,}"
+    if [[ "$haystack" == *"$normalized_query"* ]]; then
       printf '%-24s %s\n' "$key" "${LU_DESC[$key]}"
+      matched=1
     fi
   done
+
+  if [[ "$matched" -eq 0 ]]; then
+    lu_warn "No commands matched query: $query"
+  fi
 }
 
 lu_list_group() {
   local group="$1"
   local key
+  local matched=0
   for key in "${LU_KEYS[@]}"; do
     if [[ "$key" == "$group."* ]]; then
       printf '%-24s %s\n' "$key" "${LU_DESC[$key]}"
+      matched=1
     fi
   done
+
+  if [[ "$matched" -eq 0 ]]; then
+    lu_warn "No commands registered for group: $group"
+  fi
 }
 
 lu_print_all_commands() {
@@ -78,6 +104,7 @@ lu_print_all_commands() {
 }
 
 lu_pkg_install() {
+  [[ $# -gt 0 ]] || lu_die "Usage: linuxutils pkg install <package...>" 10
   case "$LU_PKG_MGR" in
     apt) lu_run sudo apt-get install -y "$@" ;;
     dnf) lu_run sudo dnf install -y "$@" ;;
@@ -88,6 +115,7 @@ lu_pkg_install() {
 }
 
 lu_pkg_remove() {
+  [[ $# -gt 0 ]] || lu_die "Usage: linuxutils pkg remove <package...>" 10
   case "$LU_PKG_MGR" in
     apt) lu_run sudo apt-get remove -y "$@" ;;
     dnf) lu_run sudo dnf remove -y "$@" ;;
@@ -98,6 +126,7 @@ lu_pkg_remove() {
 }
 
 lu_pkg_search() {
+  [[ $# -gt 0 ]] || lu_die "Usage: linuxutils pkg search <query>" 10
   case "$LU_PKG_MGR" in
     apt) lu_run apt-cache search "$*" ;;
     dnf) lu_run dnf search "$*" ;;
@@ -128,8 +157,10 @@ lu_pkg_upgrade_all() {
 }
 
 lu_service_cmd() {
-  local action="$1"
-  local name="$2"
+  local action="${1:-}"
+  local name="${2:-}"
+  [[ -n "$action" && -n "$name" ]] || lu_die "Usage: linuxutils svc <action> <service>" 2
+
   if [[ "$LU_INIT_SYSTEM" == "systemd" ]]; then
     lu_run sudo systemctl "$action" "$name"
   elif [[ "$LU_INIT_SYSTEM" == "openrc" ]]; then
