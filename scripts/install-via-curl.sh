@@ -10,10 +10,6 @@ log() {
   printf '%s\n' "$*"
 }
 
-warn() {
-  printf 'Warning: %s\n' "$*" >&2
-}
-
 fail() {
   printf 'Error: %s\n' "$*" >&2
   exit 1
@@ -56,15 +52,4 @@ install -m 0755 "$INSTALL_DIR/bin/linuxutils" "$BIN_DIR/linuxutils"
 install -m 0755 "$INSTALL_DIR/bin/lu" "$BIN_DIR/lu"
 
 log "Installed linuxutils in $BIN_DIR"
-
-if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
-  log "Add to PATH: export PATH=\"$BIN_DIR:\$PATH\""
-fi
-
-# If old location is hashed in current shell, command may still try /usr/local/bin/linuxutils.
-if [[ -e "$BIN_DIR/linuxutils" && ! -e /usr/local/bin/linuxutils ]]; then
-  warn "If you removed /usr/local/bin/linuxutils, your shell may still cache the old path."
-  warn "Run: hash -r"
-fi
-
-log "Try now: $BIN_DIR/linuxutils help"
+log "Add to PATH if needed: export PATH=\"$BIN_DIR:\$PATH\""

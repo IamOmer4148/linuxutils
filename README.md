@@ -15,7 +15,7 @@
 
 - Bash strict mode and explicit exit codes.
 - Auto-detect OS/package manager from `/etc/os-release` + binary fallback.
-- Plugin-like command registry (`commands/*.sh`) with 500+ shortcuts.
+- Plugin-like command registry (`commands/*.sh`) with 250+ shortcuts.
 - Built-in help system with examples and keyword search.
 - `linuxutils doctor` for dependency/environment checks.
 - `linuxutils update` self-update (when installed from git checkout).
@@ -47,15 +47,12 @@ hash -r
 ```bash
 git clone https://github.com/IamOmer4148/linuxutils.git
 cd linuxutils
-# clean system-wide install (default CLEAN_INSTALL=1)
+# system-wide (requires sudo)
 sudo make install
 
-# user-local clean install (no sudo)
+# user-local (no sudo)
 make PREFIX="$HOME/.local" install
 export PATH="$HOME/.local/bin:$PATH"
-
-# disable cleanup behavior if needed
-CLEAN_INSTALL=0 make PREFIX="$HOME/.local" install
 ```
 
 ### 3) Homebrew on Linux (optional)
@@ -85,7 +82,7 @@ linuxutils doctor
 - `sec` - security hygiene checks
 - `backup` - backup and rsync presets
 - `qol` - quality-of-life shortcuts
-- `web` - basic web server, deploy, site health checks, and 100 premade webserver starters
+- `web` - basic web server, deploy, and site health checks
 - `cloud` - basic cloud/Kubernetes/Terraform/containers shortcuts
 - `ai` - basic llama/Ollama/HuggingFace/vLLM helpers
 - `help` - searchable help, grouped lists, examples
@@ -98,23 +95,6 @@ This project ships with **500+ commands**.
 
 ```bash
 linuxutils help commands
-```
-
-- Find premade starters:
-
-```bash
-linuxutils help search premade
-linuxutils web premade-py-flask-api ./my-flask-api
-```
-
-- Simple webserver hosting commands (from `webserver/` by default):
-
-```bash
-linuxutils web make-simple-page webserver
-linuxutils web host-python webserver 8000
-linuxutils web host-node webserver 3000
-linuxutils web host-c webserver 8080
-linuxutils web host-apache webserver 8081
 ```
 
 - Full generated command catalog (committed): [`docs/COMMANDS.md`](docs/COMMANDS.md)

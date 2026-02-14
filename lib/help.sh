@@ -39,7 +39,6 @@ Common examples:
   linuxutils backup rsync-dryrun ./src /mnt/backup/src
   linuxutils qol weather Tokyo
   linuxutils web py-serve 8000
-  linuxutils web host-python webserver 8000
   linuxutils cloud kube-get-pods
   linuxutils ai ollama-run llama3.1 hello
 EOT

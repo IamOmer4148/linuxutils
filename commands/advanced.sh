@@ -16,14 +16,6 @@ lu_adv_try() {
   fi
 }
 
-declare -Ag LU_ADV_SCRIPT=()
-
-lu_adv_run_registered() {
-  local key="$1"
-  shift
-  lu_run bash -lc "${LU_ADV_SCRIPT[$key]}" -- "$@"
-}
-
 lu_adv_register() {
   local key="$1"
   local desc="$2"
@@ -34,22 +26,14 @@ lu_adv_register() {
   local fn="lu_cmd_${key//./_}"
   fn="${fn//-/_}"
 
-  LU_ADV_SCRIPT["$key"]="$script"
-
-  local qkey
-  printf -v qkey '%q' "$key"
-  eval "${fn}() { lu_adv_run_registered ${qkey} "\$@"; }"
+  local qscript
+  printf -v qscript '%q' "$script"
+  eval "${fn}() { local _script=${qscript}; lu_run bash -lc \"\$_script\"; }"
 
   register_command "$key" "$desc" "$example" "$fn" "$confirm"
 }
 
 # Hand-crafted practical workflows.
-
-# Compatibility commands users already expect.
-lu_adv_register "web.http-code" "Show HTTP status code for a URL (default: https://example.com)" "linuxutils web http-code https://example.com" "set -e; url=\"\${1:-https://example.com}\"; curl -s -o /dev/null -w '%{http_code}\\n' \"\$url\""
-lu_adv_register "web.python-flask-run" "Run Flask app from app.py on 0.0.0.0:5000" "linuxutils web python-flask-run" "set -e; export FLASK_APP=\"\${FLASK_APP:-app.py}\"; flask run --host=0.0.0.0 --port=\"\${FLASK_PORT:-5000}\""
-lu_adv_register "web.busybox-serve" "Serve current directory via busybox on port (default 8080)" "linuxutils web busybox-serve 8080" "set -e; port=\"\${1:-8080}\"; busybox httpd -f -p \"\$port\""
-
 lu_adv_register "web.release-refresh" "Refresh app release, run checks, and print restart hints" "linuxutils web release-refresh" "set -e; date; pwd; git rev-parse --short HEAD 2>/dev/null || true; [ -f package.json ] && npm ci --silent || true; [ -f requirements.txt ] && python3 -m pip install -r requirements.txt || true; echo 'Run service reload after validation.'"
 lu_adv_register "web.stack-health-scan" "Run common HTTP and local port health checks" "linuxutils web stack-health-scan" "set -e; ss -tulpn | head -n 25; curl -fsSI https://example.com | head -n 10 || true; curl -fsS https://example.com/healthz || true"
 lu_adv_register "web.config-backup-rotate" "Backup web config files with timestamp rotation" "linuxutils web config-backup-rotate" "set -e; ts=\$(date +%Y%m%d-%H%M%S); out=\${WEB_BACKUP_DIR:-./web-config-backups}; mkdir -p \"\$out\"; tar -czf \"\$out/config-\$ts.tgz\" /etc/nginx /etc/apache2 /etc/caddy 2>/dev/null || true; ls -1t \"\$out\" | tail -n +11 | xargs -r -I{} rm -f \"\$out/{}\"; echo \"Saved in \$out\""
