@@ -36,6 +36,12 @@ Read the installer first:
 curl -fsSL https://raw.githubusercontent.com/IamOmer4148/linuxutils/main/scripts/install-via-curl.sh
 ```
 
+If `linuxutils` still points to an old removed path (like `/usr/local/bin/linuxutils`), refresh shell command cache:
+
+```bash
+hash -r
+```
+
 ### 2) Manual install
 
 ```bash
