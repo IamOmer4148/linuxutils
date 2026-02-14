@@ -500,7 +500,6 @@ Generated from the command registry.
 | `web.apache-static-asset-prepare` | Apache workflow: static asset prepare | `linuxutils web apache-static-asset-prepare` |
 | `web.apache-tls-expiry-report` | Apache workflow: tls expiry report | `linuxutils web apache-tls-expiry-report` |
 | `web.apache-upstream-reachability` | Apache workflow: upstream reachability | `linuxutils web apache-upstream-reachability` |
-| `web.busybox-serve` | Serve current directory via busybox on port (default 8080) | `linuxutils web busybox-serve 8080` |
 | `web.caddy-access-log-triage` | Caddy workflow: access log triage | `linuxutils web caddy-access-log-triage` |
 | `web.caddy-backup-snapshot` | Caddy workflow: backup snapshot | `linuxutils web caddy-backup-snapshot` |
 | `web.caddy-cache-warmup` | Caddy workflow: cache warmup | `linuxutils web caddy-cache-warmup` |
@@ -542,7 +541,6 @@ Generated from the command registry.
 | `web.go-static-asset-prepare` | Go workflow: static asset prepare | `linuxutils web go-static-asset-prepare` |
 | `web.go-tls-expiry-report` | Go workflow: tls expiry report | `linuxutils web go-tls-expiry-report` |
 | `web.go-upstream-reachability` | Go workflow: upstream reachability | `linuxutils web go-upstream-reachability` |
-| `web.http-code` | Show HTTP status code for a URL (default: https://example.com) | `linuxutils web http-code https://example.com` |
 | `web.nginx-access-log-triage` | Nginx workflow: access log triage | `linuxutils web nginx-access-log-triage` |
 | `web.nginx-backup-snapshot` | Nginx workflow: backup snapshot | `linuxutils web nginx-backup-snapshot` |
 | `web.nginx-cache-warmup` | Nginx workflow: cache warmup | `linuxutils web nginx-cache-warmup` |
@@ -603,113 +601,12 @@ Generated from the command registry.
 | `web.php-static-asset-prepare` | Php workflow: static asset prepare | `linuxutils web php-static-asset-prepare` |
 | `web.php-tls-expiry-report` | Php workflow: tls expiry report | `linuxutils web php-tls-expiry-report` |
 | `web.php-upstream-reachability` | Php workflow: upstream reachability | `linuxutils web php-upstream-reachability` |
-| `web.premade-caddy-admin` | Generate premade caddy admin webserver starter | `linuxutils web premade-caddy-admin ./premade-caddy-admin` |
-| `web.premade-caddy-api` | Generate premade caddy api webserver starter | `linuxutils web premade-caddy-api ./premade-caddy-api` |
-| `web.premade-caddy-auth` | Generate premade caddy auth webserver starter | `linuxutils web premade-caddy-auth ./premade-caddy-auth` |
-| `web.premade-caddy-blog` | Generate premade caddy blog webserver starter | `linuxutils web premade-caddy-blog ./premade-caddy-blog` |
-| `web.premade-caddy-dashboard` | Generate premade caddy dashboard webserver starter | `linuxutils web premade-caddy-dashboard ./premade-caddy-dashboard` |
-| `web.premade-caddy-docs` | Generate premade caddy docs webserver starter | `linuxutils web premade-caddy-docs ./premade-caddy-docs` |
-| `web.premade-caddy-ecommerce` | Generate premade caddy ecommerce webserver starter | `linuxutils web premade-caddy-ecommerce ./premade-caddy-ecommerce` |
-| `web.premade-caddy-landing` | Generate premade caddy landing webserver starter | `linuxutils web premade-caddy-landing ./premade-caddy-landing` |
-| `web.premade-caddy-portfolio` | Generate premade caddy portfolio webserver starter | `linuxutils web premade-caddy-portfolio ./premade-caddy-portfolio` |
-| `web.premade-caddy-status` | Generate premade caddy status webserver starter | `linuxutils web premade-caddy-status ./premade-caddy-status` |
-| `web.premade-docker-nginx-admin` | Generate premade docker-nginx admin webserver starter | `linuxutils web premade-docker-nginx-admin ./premade-docker-nginx-admin` |
-| `web.premade-docker-nginx-api` | Generate premade docker-nginx api webserver starter | `linuxutils web premade-docker-nginx-api ./premade-docker-nginx-api` |
-| `web.premade-docker-nginx-auth` | Generate premade docker-nginx auth webserver starter | `linuxutils web premade-docker-nginx-auth ./premade-docker-nginx-auth` |
-| `web.premade-docker-nginx-blog` | Generate premade docker-nginx blog webserver starter | `linuxutils web premade-docker-nginx-blog ./premade-docker-nginx-blog` |
-| `web.premade-docker-nginx-dashboard` | Generate premade docker-nginx dashboard webserver starter | `linuxutils web premade-docker-nginx-dashboard ./premade-docker-nginx-dashboard` |
-| `web.premade-docker-nginx-docs` | Generate premade docker-nginx docs webserver starter | `linuxutils web premade-docker-nginx-docs ./premade-docker-nginx-docs` |
-| `web.premade-docker-nginx-ecommerce` | Generate premade docker-nginx ecommerce webserver starter | `linuxutils web premade-docker-nginx-ecommerce ./premade-docker-nginx-ecommerce` |
-| `web.premade-docker-nginx-landing` | Generate premade docker-nginx landing webserver starter | `linuxutils web premade-docker-nginx-landing ./premade-docker-nginx-landing` |
-| `web.premade-docker-nginx-portfolio` | Generate premade docker-nginx portfolio webserver starter | `linuxutils web premade-docker-nginx-portfolio ./premade-docker-nginx-portfolio` |
-| `web.premade-docker-nginx-status` | Generate premade docker-nginx status webserver starter | `linuxutils web premade-docker-nginx-status ./premade-docker-nginx-status` |
-| `web.premade-go-admin` | Generate premade go admin webserver starter | `linuxutils web premade-go-admin ./premade-go-admin` |
-| `web.premade-go-api` | Generate premade go api webserver starter | `linuxutils web premade-go-api ./premade-go-api` |
-| `web.premade-go-auth` | Generate premade go auth webserver starter | `linuxutils web premade-go-auth ./premade-go-auth` |
-| `web.premade-go-blog` | Generate premade go blog webserver starter | `linuxutils web premade-go-blog ./premade-go-blog` |
-| `web.premade-go-dashboard` | Generate premade go dashboard webserver starter | `linuxutils web premade-go-dashboard ./premade-go-dashboard` |
-| `web.premade-go-docs` | Generate premade go docs webserver starter | `linuxutils web premade-go-docs ./premade-go-docs` |
-| `web.premade-go-ecommerce` | Generate premade go ecommerce webserver starter | `linuxutils web premade-go-ecommerce ./premade-go-ecommerce` |
-| `web.premade-go-landing` | Generate premade go landing webserver starter | `linuxutils web premade-go-landing ./premade-go-landing` |
-| `web.premade-go-portfolio` | Generate premade go portfolio webserver starter | `linuxutils web premade-go-portfolio ./premade-go-portfolio` |
-| `web.premade-go-status` | Generate premade go status webserver starter | `linuxutils web premade-go-status ./premade-go-status` |
-| `web.premade-node-express-admin` | Generate premade node-express admin webserver starter | `linuxutils web premade-node-express-admin ./premade-node-express-admin` |
-| `web.premade-node-express-api` | Generate premade node-express api webserver starter | `linuxutils web premade-node-express-api ./premade-node-express-api` |
-| `web.premade-node-express-auth` | Generate premade node-express auth webserver starter | `linuxutils web premade-node-express-auth ./premade-node-express-auth` |
-| `web.premade-node-express-blog` | Generate premade node-express blog webserver starter | `linuxutils web premade-node-express-blog ./premade-node-express-blog` |
-| `web.premade-node-express-dashboard` | Generate premade node-express dashboard webserver starter | `linuxutils web premade-node-express-dashboard ./premade-node-express-dashboard` |
-| `web.premade-node-express-docs` | Generate premade node-express docs webserver starter | `linuxutils web premade-node-express-docs ./premade-node-express-docs` |
-| `web.premade-node-express-ecommerce` | Generate premade node-express ecommerce webserver starter | `linuxutils web premade-node-express-ecommerce ./premade-node-express-ecommerce` |
-| `web.premade-node-express-landing` | Generate premade node-express landing webserver starter | `linuxutils web premade-node-express-landing ./premade-node-express-landing` |
-| `web.premade-node-express-portfolio` | Generate premade node-express portfolio webserver starter | `linuxutils web premade-node-express-portfolio ./premade-node-express-portfolio` |
-| `web.premade-node-express-status` | Generate premade node-express status webserver starter | `linuxutils web premade-node-express-status ./premade-node-express-status` |
-| `web.premade-php-admin` | Generate premade php admin webserver starter | `linuxutils web premade-php-admin ./premade-php-admin` |
-| `web.premade-php-api` | Generate premade php api webserver starter | `linuxutils web premade-php-api ./premade-php-api` |
-| `web.premade-php-auth` | Generate premade php auth webserver starter | `linuxutils web premade-php-auth ./premade-php-auth` |
-| `web.premade-php-blog` | Generate premade php blog webserver starter | `linuxutils web premade-php-blog ./premade-php-blog` |
-| `web.premade-php-dashboard` | Generate premade php dashboard webserver starter | `linuxutils web premade-php-dashboard ./premade-php-dashboard` |
-| `web.premade-php-docs` | Generate premade php docs webserver starter | `linuxutils web premade-php-docs ./premade-php-docs` |
-| `web.premade-php-ecommerce` | Generate premade php ecommerce webserver starter | `linuxutils web premade-php-ecommerce ./premade-php-ecommerce` |
-| `web.premade-php-landing` | Generate premade php landing webserver starter | `linuxutils web premade-php-landing ./premade-php-landing` |
-| `web.premade-php-portfolio` | Generate premade php portfolio webserver starter | `linuxutils web premade-php-portfolio ./premade-php-portfolio` |
-| `web.premade-php-status` | Generate premade php status webserver starter | `linuxutils web premade-php-status ./premade-php-status` |
-| `web.premade-py-fastapi-admin` | Generate premade py-fastapi admin webserver starter | `linuxutils web premade-py-fastapi-admin ./premade-py-fastapi-admin` |
-| `web.premade-py-fastapi-api` | Generate premade py-fastapi api webserver starter | `linuxutils web premade-py-fastapi-api ./premade-py-fastapi-api` |
-| `web.premade-py-fastapi-auth` | Generate premade py-fastapi auth webserver starter | `linuxutils web premade-py-fastapi-auth ./premade-py-fastapi-auth` |
-| `web.premade-py-fastapi-blog` | Generate premade py-fastapi blog webserver starter | `linuxutils web premade-py-fastapi-blog ./premade-py-fastapi-blog` |
-| `web.premade-py-fastapi-dashboard` | Generate premade py-fastapi dashboard webserver starter | `linuxutils web premade-py-fastapi-dashboard ./premade-py-fastapi-dashboard` |
-| `web.premade-py-fastapi-docs` | Generate premade py-fastapi docs webserver starter | `linuxutils web premade-py-fastapi-docs ./premade-py-fastapi-docs` |
-| `web.premade-py-fastapi-ecommerce` | Generate premade py-fastapi ecommerce webserver starter | `linuxutils web premade-py-fastapi-ecommerce ./premade-py-fastapi-ecommerce` |
-| `web.premade-py-fastapi-landing` | Generate premade py-fastapi landing webserver starter | `linuxutils web premade-py-fastapi-landing ./premade-py-fastapi-landing` |
-| `web.premade-py-fastapi-portfolio` | Generate premade py-fastapi portfolio webserver starter | `linuxutils web premade-py-fastapi-portfolio ./premade-py-fastapi-portfolio` |
-| `web.premade-py-fastapi-status` | Generate premade py-fastapi status webserver starter | `linuxutils web premade-py-fastapi-status ./premade-py-fastapi-status` |
-| `web.premade-py-flask-admin` | Generate premade py-flask admin webserver starter | `linuxutils web premade-py-flask-admin ./premade-py-flask-admin` |
-| `web.premade-py-flask-api` | Generate premade py-flask api webserver starter | `linuxutils web premade-py-flask-api ./premade-py-flask-api` |
-| `web.premade-py-flask-auth` | Generate premade py-flask auth webserver starter | `linuxutils web premade-py-flask-auth ./premade-py-flask-auth` |
-| `web.premade-py-flask-blog` | Generate premade py-flask blog webserver starter | `linuxutils web premade-py-flask-blog ./premade-py-flask-blog` |
-| `web.premade-py-flask-dashboard` | Generate premade py-flask dashboard webserver starter | `linuxutils web premade-py-flask-dashboard ./premade-py-flask-dashboard` |
-| `web.premade-py-flask-docs` | Generate premade py-flask docs webserver starter | `linuxutils web premade-py-flask-docs ./premade-py-flask-docs` |
-| `web.premade-py-flask-ecommerce` | Generate premade py-flask ecommerce webserver starter | `linuxutils web premade-py-flask-ecommerce ./premade-py-flask-ecommerce` |
-| `web.premade-py-flask-landing` | Generate premade py-flask landing webserver starter | `linuxutils web premade-py-flask-landing ./premade-py-flask-landing` |
-| `web.premade-py-flask-portfolio` | Generate premade py-flask portfolio webserver starter | `linuxutils web premade-py-flask-portfolio ./premade-py-flask-portfolio` |
-| `web.premade-py-flask-status` | Generate premade py-flask status webserver starter | `linuxutils web premade-py-flask-status ./premade-py-flask-status` |
-| `web.premade-rust-axum-admin` | Generate premade rust-axum admin webserver starter | `linuxutils web premade-rust-axum-admin ./premade-rust-axum-admin` |
-| `web.premade-rust-axum-api` | Generate premade rust-axum api webserver starter | `linuxutils web premade-rust-axum-api ./premade-rust-axum-api` |
-| `web.premade-rust-axum-auth` | Generate premade rust-axum auth webserver starter | `linuxutils web premade-rust-axum-auth ./premade-rust-axum-auth` |
-| `web.premade-rust-axum-blog` | Generate premade rust-axum blog webserver starter | `linuxutils web premade-rust-axum-blog ./premade-rust-axum-blog` |
-| `web.premade-rust-axum-dashboard` | Generate premade rust-axum dashboard webserver starter | `linuxutils web premade-rust-axum-dashboard ./premade-rust-axum-dashboard` |
-| `web.premade-rust-axum-docs` | Generate premade rust-axum docs webserver starter | `linuxutils web premade-rust-axum-docs ./premade-rust-axum-docs` |
-| `web.premade-rust-axum-ecommerce` | Generate premade rust-axum ecommerce webserver starter | `linuxutils web premade-rust-axum-ecommerce ./premade-rust-axum-ecommerce` |
-| `web.premade-rust-axum-landing` | Generate premade rust-axum landing webserver starter | `linuxutils web premade-rust-axum-landing ./premade-rust-axum-landing` |
-| `web.premade-rust-axum-portfolio` | Generate premade rust-axum portfolio webserver starter | `linuxutils web premade-rust-axum-portfolio ./premade-rust-axum-portfolio` |
-| `web.premade-rust-axum-status` | Generate premade rust-axum status webserver starter | `linuxutils web premade-rust-axum-status ./premade-rust-axum-status` |
-| `web.premade-static-admin` | Generate premade static admin webserver starter | `linuxutils web premade-static-admin ./premade-static-admin` |
-| `web.premade-static-api` | Generate premade static api webserver starter | `linuxutils web premade-static-api ./premade-static-api` |
-| `web.premade-static-auth` | Generate premade static auth webserver starter | `linuxutils web premade-static-auth ./premade-static-auth` |
-| `web.premade-static-blog` | Generate premade static blog webserver starter | `linuxutils web premade-static-blog ./premade-static-blog` |
-| `web.premade-static-dashboard` | Generate premade static dashboard webserver starter | `linuxutils web premade-static-dashboard ./premade-static-dashboard` |
-| `web.premade-static-docs` | Generate premade static docs webserver starter | `linuxutils web premade-static-docs ./premade-static-docs` |
-| `web.premade-static-ecommerce` | Generate premade static ecommerce webserver starter | `linuxutils web premade-static-ecommerce ./premade-static-ecommerce` |
-| `web.premade-static-landing` | Generate premade static landing webserver starter | `linuxutils web premade-static-landing ./premade-static-landing` |
-| `web.premade-static-portfolio` | Generate premade static portfolio webserver starter | `linuxutils web premade-static-portfolio ./premade-static-portfolio` |
-| `web.premade-static-status` | Generate premade static status webserver starter | `linuxutils web premade-static-status ./premade-static-status` |
-| `web.premade-ws-admin` | Generate premade ws admin webserver starter | `linuxutils web premade-ws-admin ./premade-ws-admin` |
-| `web.premade-ws-api` | Generate premade ws api webserver starter | `linuxutils web premade-ws-api ./premade-ws-api` |
-| `web.premade-ws-auth` | Generate premade ws auth webserver starter | `linuxutils web premade-ws-auth ./premade-ws-auth` |
-| `web.premade-ws-blog` | Generate premade ws blog webserver starter | `linuxutils web premade-ws-blog ./premade-ws-blog` |
-| `web.premade-ws-dashboard` | Generate premade ws dashboard webserver starter | `linuxutils web premade-ws-dashboard ./premade-ws-dashboard` |
-| `web.premade-ws-docs` | Generate premade ws docs webserver starter | `linuxutils web premade-ws-docs ./premade-ws-docs` |
-| `web.premade-ws-ecommerce` | Generate premade ws ecommerce webserver starter | `linuxutils web premade-ws-ecommerce ./premade-ws-ecommerce` |
-| `web.premade-ws-landing` | Generate premade ws landing webserver starter | `linuxutils web premade-ws-landing ./premade-ws-landing` |
-| `web.premade-ws-portfolio` | Generate premade ws portfolio webserver starter | `linuxutils web premade-ws-portfolio ./premade-ws-portfolio` |
-| `web.premade-ws-status` | Generate premade ws status webserver starter | `linuxutils web premade-ws-status ./premade-ws-status` |
 | `web.python-access-log-triage` | Python workflow: access log triage | `linuxutils web python-access-log-triage` |
 | `web.python-backup-snapshot` | Python workflow: backup snapshot | `linuxutils web python-backup-snapshot` |
 | `web.python-cache-warmup` | Python workflow: cache warmup | `linuxutils web python-cache-warmup` |
 | `web.python-config-lint-pass` | Python workflow: config lint pass | `linuxutils web python-config-lint-pass` |
 | `web.python-dependency-refresh` | Python workflow: dependency refresh | `linuxutils web python-dependency-refresh` |
 | `web.python-error-log-triage` | Python workflow: error log triage | `linuxutils web python-error-log-triage` |
-| `web.python-flask-run` | Run Flask app from app.py on 0.0.0.0:5000 | `linuxutils web python-flask-run` |
 | `web.python-health-probe-suite` | Python workflow: health probe suite | `linuxutils web python-health-probe-suite` |
 | `web.python-latency-sample` | Python workflow: latency sample | `linuxutils web python-latency-sample` |
 | `web.python-port-binding-report` | Python workflow: port binding report | `linuxutils web python-port-binding-report` |
