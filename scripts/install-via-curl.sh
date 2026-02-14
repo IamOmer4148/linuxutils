@@ -1,24 +1,70 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_URL="${REPO_URL:-https://github.com/your-org/linuxutils.git}"
+REPO_URL="${REPO_URL:-https://github.com/IamOmer4148/linuxutils.git}"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/.local/share/linuxutils}"
 BIN_DIR="${BIN_DIR:-$HOME/.local/bin}"
+CLEAN_INSTALL="${CLEAN_INSTALL:-1}"
+
+log() {
+  printf '%s\n' "$*"
+}
+
+warn() {
+  printf 'Warning: %s\n' "$*" >&2
+}
+
+fail() {
+  printf 'Error: %s\n' "$*" >&2
+  exit 1
+}
 
 if ! command -v git >/dev/null 2>&1; then
-  echo "git is required to install linuxutils" >&2
-  exit 1
+  fail "git is required to install linuxutils"
 fi
 
-mkdir -p "$INSTALL_DIR" "$BIN_DIR"
+case "$REPO_URL" in
+  https://github.com/*|http://github.com/*)
+    ;;
+  *)
+    fail "REPO_URL must be an http(s) GitHub URL to avoid interactive SSH auth prompts"
+    ;;
+esac
+
+mkdir -p "$BIN_DIR"
+
+# Disable interactive git prompts so installer never asks for GitHub credentials.
+GIT_NO_PROMPT=(env GIT_TERMINAL_PROMPT=0)
+
+if [[ "$CLEAN_INSTALL" == "1" && -d "$INSTALL_DIR" && ! -d "$INSTALL_DIR/.git" ]]; then
+  log "Removing non-git install directory for clean reinstall: $INSTALL_DIR"
+  rm -rf "$INSTALL_DIR"
+fi
+
 if [[ -d "$INSTALL_DIR/.git" ]]; then
-  git -C "$INSTALL_DIR" pull --ff-only
+  "${GIT_NO_PROMPT[@]}" git -C "$INSTALL_DIR" remote set-url origin "$REPO_URL"
+  "${GIT_NO_PROMPT[@]}" git -C "$INSTALL_DIR" fetch --depth=1 origin
+  git -C "$INSTALL_DIR" reset --hard origin/HEAD
+  if [[ "$CLEAN_INSTALL" == "1" ]]; then
+    git -C "$INSTALL_DIR" clean -fdx
+  fi
 else
-  git clone "$REPO_URL" "$INSTALL_DIR"
+  "${GIT_NO_PROMPT[@]}" git clone --depth=1 "$REPO_URL" "$INSTALL_DIR"
 fi
 
-ln -sf "$INSTALL_DIR/bin/linuxutils" "$BIN_DIR/linuxutils"
-ln -sf "$INSTALL_DIR/bin/lu" "$BIN_DIR/lu"
+install -m 0755 "$INSTALL_DIR/bin/linuxutils" "$BIN_DIR/linuxutils"
+install -m 0755 "$INSTALL_DIR/bin/lu" "$BIN_DIR/lu"
 
-echo "Installed linuxutils in $BIN_DIR"
-echo "Add to PATH if needed: export PATH=\"$BIN_DIR:\$PATH\""
+log "Installed linuxutils in $BIN_DIR"
+
+if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
+  log "Add to PATH: export PATH=\"$BIN_DIR:\$PATH\""
+fi
+
+# If old location is hashed in current shell, command may still try /usr/local/bin/linuxutils.
+if [[ -e "$BIN_DIR/linuxutils" && ! -e /usr/local/bin/linuxutils ]]; then
+  warn "If you removed /usr/local/bin/linuxutils, your shell may still cache the old path."
+  warn "Run: hash -r"
+fi
+
+log "Try now: $BIN_DIR/linuxutils help"
